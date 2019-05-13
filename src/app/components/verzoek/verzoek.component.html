@@ -1,0 +1,81 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <div class="wrapper">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note'>
+          <div class='row'>
+            <div class='col-md-12'>
+              <i class='material-icons dashboard-icons float-left' onclick=''>reorder</i>
+            </div>
+          </div>
+        </div>
+
+        <button routerLink="/logo-profile">Profiel</button>
+        <button routerLink="/add">Product Toevoegen</button>
+
+        <div id="formFooter">
+            <a class="underlineHover" (click)="logout()" >Log uit</a>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class='col-md-9'>
+    <div class="wrapper child-wrapper fadeInDown">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note fadeIn first'>
+          <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6" >
+                <p>Producten</p>
+            </div>
+            <div class="col-md-3">
+              <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" />
+            </div>
+          </div>
+          
+        </div>
+
+          <!-- Show it when there are no children -->
+          <!-- <div class="row">
+            <div class='col-md-4 mx-auto' *ngIf="Child.length == 0">
+              <p>There are no children</p>
+              <button class='child-card-button' routerLink="/add">Maak aan!</button>
+            </div>
+          </div> -->
+          
+          <!-- Children list, it hides itself when there are no children -->
+
+          <!-- <div *ngIf="Product.length !== 0">
+            <div class='row'>
+              <div *ngFor="let child of Child">
+                  <div class='col-md-4 child-card-search'>
+                    <div class="card child-card" style="width: 18rem;">
+                      <div *ngIf="child.child_photo == null">
+                          <img class="card-img-top" src="./assets/300x300.png" alt="Card image cap">
+                      </div>
+                      <div *ngIf="child.child_photo != null">
+                          <img class="card-img-top" src="{{child.child_photo}}" style="max-height: 300px;" alt="Card image cap">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title float-center">{{child.username}}</h5>
+                        <p class="card-text">{{child.email}}</p>
+                        <button class='child-card-button' routerLink="/child/{{child.id}}">Zie details</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>        
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div> 
+ 
+ 
