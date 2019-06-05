@@ -1,0 +1,53 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="note fadeIn first">
+      <p>Welkom bij HU uitlenen</p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <!-- Validation for incorrect login data -->
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div *ngIf="submitted && incorrectForm" class="invalid-feed fadeIn">
+                <div>Gegevens niet correct</div>
+            </div>
+        </div>
+      </div> 
+
+      <!-- Username with validation for empty input field -->
+      <input type="text" #userEmail formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" class="fadeIn second" placeholder="Email">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div *ngIf="submitted && f.username.errors" class="invalid-feed fadeIn">
+              <div *ngIf="f.username.errors.required">Gebruikersnaam moet worden ingevuld</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password with validation for empty input field -->
+      <input type="password" #userPassword formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="fadeIn second" placeholder="Wachtwoord" />
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feed fadeIn">
+              <div *ngIf="f.password.errors.required">Wachtwoord moet worden ingevuld</div>
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]='loading' class='loginBtn'>Login</button>
+    </form>
+
+    <!-- Remind Password -->
+    <div id="formFooter">
+      <a class="underlineHover" routerLink="#">Wachtwoord Vergeten?</a> <br>
+      <a class="underlineHover" routerLink="/register">Registreer Hier</a>
+      <br>
+      <a class="underlineHover" href="" routerLink="/lenen">Terug naar begin</a>
+    </div>
+
+  </div>
+</div>
