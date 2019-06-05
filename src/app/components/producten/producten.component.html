@@ -14,7 +14,8 @@
 
         <button routerLink="/dashboard">Dashboard</button>
         <button routerLink="/profile">Profiel</button>
-        <button routerLink="/producten">Producten</button>
+        <button routerLink="/verzoek">Verzoeken</button>
+        <button routerLink="/add-product">Product Toevoegen</button>
 
         <div id="formFooter">
             <a class="underlineHover" (click)="logout()" >Log uit</a>
@@ -34,7 +35,7 @@
 
             </div>
             <div class="col-md-6" >
-                <p>Verzoeken</p>
+                <p>Producten</p>
             </div>
             <div class="col-md-3">
               <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" />
@@ -42,19 +43,20 @@
           </div>
           
         </div>
+          
           <!-- Children list, it hides itself when there are no children -->
 
             <div class='row'>
-              <div *ngFor="let verzoek of verzoeken">
+              <div *ngFor="let product of producten">
                   <div class='col-md-4 child-card-search'>
                     <div class="card child-card" style="width: 18rem;">
                       
-                          <img class="card-img-top" src="./assets/300x300.png" alt="Card image cap">
-                      
+                      <img class="card-img-top" src="../../../assets/300x300.png" alt="Card image cap">
+                
                       <div class="card-body">
-                        <p class="card-title float-center">{{verzoek.Email}} </p>
-                        <h5 class="card-text">{{verzoek.Status}} </h5>
-                        <button class='child-card-button' routerLink="/verzoek/{{verzoek.id}}">Zie details</button>
+                        <h5 class="card-title float-center">{{product.Naam}} </h5>
+                        <p class="card-text">{{product.Type}} </p>
+                        <button class='child-card-button' routerLink="/producten/{{product.id}}">Status: {{product.Status}}</button>
                       </div>
                     </div>
                 </div>

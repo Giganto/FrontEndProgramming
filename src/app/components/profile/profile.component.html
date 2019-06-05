@@ -1,0 +1,198 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <div class="wrapper">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note'>
+          <div class='row'>
+            <div class='col-md-12'>
+              <i class='material-icons dashboard-icons float-left' onclick=''>reorder</i>
+            </div>
+          </div>
+        </div>
+
+        <button routerLink="/dashboard">Dashboard</button>
+        <button routerLink="/producten">Producten</button>
+        <button routerLink="/verzoek">Verzoeken</button>
+        
+        <div id="formFooter">
+            <a class="underlineHover" (click)="logout()">Log uit</a>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class='col-md-9'>
+    <div class="wrapper child-wrapper fadeInDown">
+
+      <div id='formContent' class=''>
+
+          <div id='RegisterNote' class='note fadeIn first'>
+              <div class='row'>
+                <div class='col-md-12'>
+                  <p>Profiel van </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container emp-profile">
+                <div>
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="profile-img">
+                                <img src="./assets/person_placeholder.png" alt=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-head">
+                                        <h5>
+                                            Test test
+                                        </h5>
+                                        <h6>
+                                            ____________________
+                                        </h6>
+                                        <p class="proile-rating">Voortgang : <span>57%</span></p>
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">informatie</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Voortgang</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#parents" role="tab" aria-controls="profile" aria-selected="false">Ouders</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#notifications" role="tab" aria-controls="profile" aria-selected="false">Notificaties</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
+                            <button>Wijzig Profiel</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="profile-work">
+                                <p>Info</p>
+                                <a href="">-----</a><br/>
+                                <a href="">-----</a><br/>
+                                <a href="">-----</a>
+                                <p>Info</p>
+                                <a href="">-----</a><br/>
+                                <a href="">-----</a><br/>
+                                <a href="">-----</a><br/>
+                                <a href="">-----</a><br/>
+                                <a href="">-----</a><br/>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="tab-content profile-tab" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Gebruikersnaam</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>placeholder</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Naam</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>placeholder</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Email</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>placeholder</p>
+                                                </div>
+                                            </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Chart hier</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>Nog een chart hier</p>
+                                                </div>
+                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Op schema?</label><br/>
+                                            <p>Nei</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="parents" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="row">
+                                      <div class="col-md-6" *ngFor="let parent of Parent">
+                                          <div class="col-md-12">
+                                              <label>placeholder</label>
+                                              <div class="row">
+                                                  <div class="col-md-12">
+                                                      <input type="text" id="parentEmail1" class="" name="parentEmail1" placeholder="{{parent.email}}">
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                      <input type="number" id="parentNumber1" class="" name="parentNumber1" placeholder="{{parent.phonenumber}}">
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <!-- Show it when there are no children -->
+                                          <div class='col-md-4 mx-auto' *ngIf="Parent.length == 0">
+                                              <div>
+                                                      <p>Er zijn nog geen ouders toegewezen!</p>
+                                                      <button class='parentAddBtn' routerLink="/child/add-parent/{{child.id}}">Voeg nu toe!</button>
+                                              </div>
+                                          </div>
+                                          <div *ngIf="Parent.length !== 0">    
+                                              <div class="col-md-12">
+                                                  <p></p>
+                                              </div>
+                                              <div class="col-md-12">
+                                                  <button>Wijzigingen opslaan</button>
+                                              </div>
+                                          </div>
+                                    </div>
+                        </div>
+                        <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Notificaties Door Whattsapp?</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input id='whattsappToggle' type='checkbox' data-toggle='toggle'>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Notificaties Door Email?</label>
+                                </div>
+                                <div class="col-md-6">
+                                  <input id='emailToggle' type='checkbox' data-toggle='toggle'>
+                                </div>
+                            </div>
+                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form> 
+              </div>          
+            </div>
+  
+      </div>
+    </div>
+  </div>
+</div> 

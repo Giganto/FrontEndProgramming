@@ -1,0 +1,58 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <div class="wrapper">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note'>
+          <div class='row'>
+            <div class='col-md-12'>
+              <i class='material-icons dashboard-icons float-left' onclick=''>reorder</i>
+            </div>
+          </div>
+        </div>
+
+        <button routerLink="/dashboard">Dashboard</button>
+        <button routerLink="/profile">Profiel</button>
+        <button routerLink="/verzoek">Verzoeken</button>
+        <button routerLink="/producten">Producten</button>
+
+        <div id="formFooter">
+            <a class="underlineHover" routerLink="/login-page">Log uit</a>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class='col-md-9'>
+    <div class="wrapper child-wrapper fadeInDown">
+
+      <div id='formContent' class=''>
+
+          <div id='RegisterNote' class='note fadeIn first'>
+              <div class='row'>
+                <div class='col-md-12'>
+                  <p>Product Toevoegen</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container emp-profile">
+                <form method="post">
+                    <div class="row">
+                      <div class='col-md-12'>
+                        <input type="text" [(ngModel)]="Product.Naam" name="Naam" id="productName" placeholder="Naam"/>
+                        <input type="text" [(ngModel)]="Product.Type" name="Type" id="productType" placeholder="Type" />
+                        <input type="text" [(ngModel)]="Product.Status" name="Status" id="productStatus" placeholder="Status"/>
+                        <p></p>
+                        <p></p>
+                        <button (click)="createProduct()">Opslaan</button>
+                      </div>
+                    </div>
+                </form>           
+            </div>
+  
+      </div>
+    </div>
+  </div>
+</div> 

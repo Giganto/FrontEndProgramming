@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VerzoekComponent } from './components/verzoek/verzoek.component';
+
 
 // Firebase services + enviorment module
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 // Bootstrap Modules
@@ -21,6 +22,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { AuthModule } from '../app/auth/auth.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { VerzoekComponent } from './components/verzoek/verzoek.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductenComponent } from './components/producten/producten.component';
+import { SingleVerzoekComponent } from './components/single-verzoek/single-verzoek.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SingleProductComponent } from './components/single-product/single-product.component';
+import { LenenComponent } from './components/lenen/lenen.component';
+import { LenenProductComponent } from './components/lenen-product/lenen-product.component';
 
 const config = {
   apiKey: 'AIzaSyBy5HECxahgfn-UtcFlWN_5JkXhdYTweYU',
@@ -35,7 +46,15 @@ const config = {
 @NgModule({
   declarations: [
     AppComponent,
-    VerzoekComponent
+    VerzoekComponent,
+    ProfileComponent,
+    AddProductComponent,
+    DashboardComponent,
+    ProductenComponent,
+    SingleVerzoekComponent,
+    SingleProductComponent,
+    LenenComponent,
+    LenenProductComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +68,8 @@ const config = {
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    BrowserAnimationsModule
   ],
   exports: [
     FormsModule,

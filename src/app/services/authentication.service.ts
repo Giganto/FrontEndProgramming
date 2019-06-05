@@ -23,7 +23,7 @@ export class AuthenticationService {
   async login(email: string, password: string) {
     try {
       await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['/verzoek']);
+      this.router.navigate(['/dashboard']);
     } catch (e) {
       alert('Error!' + e.message);
     }
