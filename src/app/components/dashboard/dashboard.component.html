@@ -95,7 +95,7 @@
                 
                             </div>
                             <div class="col-md-6" >
-                                <p>Gereserveerd & Uitgeleend</p>
+                                <p>Verzoeken</p>
                             </div>
                             <div class="col-md-3">
                               <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
@@ -109,21 +109,21 @@
                             [dataSource]="dataSource2"
                             (onPointClick)="pointClickHandler($event)"
                             (onLegendClick)="legendClickHandler($event)">
+                            <dxo-legend
+                            orientation="horizontal"
+                            itemTextPosition="right"
+                            horizontalAlignment="center"
+                            verticalAlignment="bottom"></dxo-legend>
                             <dxi-series
                                 argumentField="status"
                                 valueField="count">
-                                <dxo-legend
-                                orientation="horizontal"
-                                itemTextPosition="right"
-                                horizontalAlignment="center"
-                                verticalAlignment="bottom"></dxo-legend>
                                 <dxo-label [visible]="true">
                                     <dxo-connector
                                         [visible]="true"
                                         [width]="1"></dxo-connector>
                                 </dxo-label>
                             </dxi-series>
-                            <dxo-size [width]="500"></dxo-size>
+                            <dxo-size [width]="600"></dxo-size>
                             <dxo-export [enabled]="true"></dxo-export>
                         </dx-pie-chart>
                         
