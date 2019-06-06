@@ -11,6 +11,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+// External Modules
+import { DxChartModule } from 'devextreme-angular';
+
 
 // Bootstrap Modules
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -69,7 +72,8 @@ const config = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DxChartModule,
   ],
   exports: [
     FormsModule,

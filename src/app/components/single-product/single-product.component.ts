@@ -25,7 +25,7 @@ export class SingleProductComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   product: Product;
 
-  @Input() Product = {id: this.id, Naam: '', Type: '', Status: ''};
+  @Input() Product = {id: this.id, Naam: '', Type: '', Status: '', Status1: '', Status2: '', Status3: '', Status4: ''};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,6 +57,14 @@ export class SingleProductComponent implements OnInit {
       this.product.id = data.payload.data()['id'];
       this.product.Status = data.payload.data()['Status'];
       this.Product.Status = this.product.Status;
+      this.product.Status1 = data.payload.data()['Status1'];
+      this.Product.Status1 = this.product.Status1;
+      this.product.Status2 = data.payload.data()['Status2'];
+      this.Product.Status2 = this.product.Status2;
+      this.product.Status3 = data.payload.data()['Status3'];
+      this.Product.Status3 = this.product.Status3;
+      this.product.Status4 = data.payload.data()['Status4'];
+      this.Product.Status4 = this.product.Status4;
       console.log('Product has been loaded');
     });
   }

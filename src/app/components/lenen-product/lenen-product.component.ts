@@ -25,7 +25,7 @@ export class LenenProductComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   product: Product;
 
-  @Input() Product = {id: this.id, Naam: '', Type: '', Status: ''};
+  @Input() Product = {id: this.id, Naam: '', Type: '', Status: '', Status1: '', Status2: '', Status3: '', Status4: ''};
   @Input() Verzoek = {id: null, Blok: '', Status: '', Email: '', Product: '', Datum: null};
 
   constructor(
@@ -61,10 +61,54 @@ export class LenenProductComponent implements OnInit {
 
   lenenProduct() {
     this.Verzoek.Product = this.id;
-    this.Verzoek.Status = 'In behandeling';
+    this.Verzoek.Status = 'In Behandeling';
 
     this.Product.Naam = this.product.Naam;
-    this.Product.Status = 'Deels beschikbaar';
+
+    if (this.Verzoek.Blok === '1') {
+      this.Product.Status1 = 'Gereserveerd';
+      this.Product.Status2 = 'Beschikbaar';
+      this.Product.Status3 = 'Beschikbaar';
+      this.Product.Status4 = 'Beschikbaar';
+    } else if (this.Verzoek.Blok === '2') {
+      this.Product.Status1 = 'Beschikbaar';
+      this.Product.Status2 = 'Gereserveerd';
+      this.Product.Status3 = 'Beschikbaar';
+      this.Product.Status4 = 'Beschikbaar';
+    } else if (this.Verzoek.Blok === '3'){
+      this.Product.Status1 = 'Beschikbaar';
+      this.Product.Status2 = 'Beschikbaar';
+      this.Product.Status3 = 'Gereserveerd';
+      this.Product.Status4 = 'Beschikbaar';
+    } else if (this.Verzoek.Blok === '4') {
+      this.Product.Status1 = 'Beschikbaar';
+      this.Product.Status2 = 'Beschikbaar';
+      this.Product.Status3 = 'Beschikbaar';
+      this.Product.Status4 = 'Gereserveerd';
+    }
+
+    if (this.Product.Status1 === 'Beschikbaar' &&
+              this.Product.Status2 === 'Beschikbaar' &&
+              this.Product.Status3 === 'Beschikbaar' &&
+              this.Product.Status4 === 'Beschikbaar') {
+      this.Product.Status = 'Beschikbaar';
+    } else if (this.Product.Status1 === 'Gereserveerd' &&
+              this.Product.Status2 === 'Gereserveerd' &&
+              this.Product.Status3 === 'Gereserveerd' &&
+              this.Product.Status4 === 'Gereserveerd') {
+      this.Product.Status = 'Gereserveerd';
+    } else if (this.Product.Status1 === 'Gereserveerd' ||
+              this.Product.Status2 === 'Gereserveerd' ||
+              this.Product.Status3 === 'Gereserveerd' ||
+              this.Product.Status4 === 'Gereserveerd') {
+      this.Product.Status = 'Deels Beschikbaar';
+    } else if (this.Product.Status1 === 'Uitgeleend' ||
+              this.Product.Status2 === 'Uitgeleend' ||
+              this.Product.Status3 === 'Uitgeleend' ||
+              this.Product.Status4 === 'Uitgeleend') {
+      this.Product.Status = 'Deels Beschikbaar';
+    }
+
     this.Product.Type = this.product.Type;
     this.Product.id = this.id;
 

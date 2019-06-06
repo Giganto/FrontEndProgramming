@@ -29,7 +29,7 @@ export class SingleVerzoekComponent implements OnInit {
 
   @Input() Verzoek = {id: this.id, Blok: '', Status: '', Email: '', Product: '', Datum: null};
 
-  @Input() Product = {id: '', Naam: '', Type: '', Status: ''};
+  @Input() Product = {id: '', Naam: '', Type: '', Status: '', Status1: '', Status2: '', Status3: '', Status4: ''};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,6 +64,7 @@ export class SingleVerzoekComponent implements OnInit {
       this.verzoek.Product = data.payload.data()['Product'];
       this.verzoek.id = data.payload.data()['id'];
       this.verzoek.Status = data.payload.data()['Status'];
+      this.verzoek.Status = data.payload.data()['Status'];
       this.getProduct(data.payload.data()['Product']);
     });
   }
@@ -76,11 +77,15 @@ export class SingleVerzoekComponent implements OnInit {
       this.product.Type = data.payload.data()['Type'];
       this.product.id = data.payload.data()['id'];
       this.product.Status = data.payload.data()['Status'];
+      this.product.Status1 = data.payload.data()['Status1'];
+      this.product.Status2 = data.payload.data()['Status2'];
+      this.product.Status3 = data.payload.data()['Status3'];
+      this.product.Status4 = data.payload.data()['Status4'];
       console.log('Product has been loaded');
     });
   }
 
-  acceptVerzoek() {
+  acceptVerzoek(blok: string) {
     this.Verzoek.Blok = this.verzoek.Blok;
     this.Verzoek.Datum = this.verzoek.Datum;
     this.Verzoek.Email = this.verzoek.Email;
@@ -98,11 +103,34 @@ export class SingleVerzoekComponent implements OnInit {
     this.verzoekService.cancelVerzoek(this.Verzoek);
   }
 
-  productUitlenen() {
+  productUitlenen(blok: string) {
     this.Product.id = this.product.id;
     this.Product.Naam = this.product.Naam;
     this.Product.Type = this.product.Type;
-    this.Product.Status = 'Deels beschikbaar';
+    this.Product.Status = 'Deels Beschikbaar';
+
+    if (blok === '1') {
+      this.Product.Status1 = 'Uitgeleend';
+      this.Product.Status2 = this.product.Status2;
+      this.Product.Status3 = this.product.Status3;
+      this.Product.Status4 = this.product.Status4;
+    } else if (blok === '2') {
+      this.Product.Status1 = this.product.Status1;
+      this.Product.Status2 = 'Uitgeleend';
+      this.Product.Status3 = this.product.Status3;
+      this.Product.Status4 = this.product.Status4;
+    } else if (blok === '3'){
+      this.Product.Status1 = this.product.Status1;
+      this.Product.Status2 = this.product.Status2;
+      this.Product.Status3 = 'Uitgeleend';
+      this.Product.Status4 = this.product.Status4;
+    } else if (blok === '4') {
+      this.Product.Status1 = this.product.Status1;
+      this.Product.Status2 = this.product.Status2;
+      this.Product.Status3 = this.product.Status3;
+      this.Product.Status4 = 'Uitgeleend';
+    }
+
     this.Verzoek.Blok = this.verzoek.Blok;
     this.Verzoek.Datum = this.verzoek.Datum;
     this.Verzoek.Email = this.verzoek.Email;
@@ -112,11 +140,55 @@ export class SingleVerzoekComponent implements OnInit {
     this.verzoekService.updateVerzoek(this.Verzoek);
   }
 
-  afrondenVerzoek() {
+  afrondenVerzoek(blok: string) {
     this.Product.id = this.product.id;
     this.Product.Naam = this.product.Naam;
     this.Product.Type = this.product.Type;
-    this.Product.Status = 'Deels beschikbaar';
+
+    if (blok === '1') {
+      this.Product.Status1 = 'Beschikbaar';
+      this.Product.Status2 = this.product.Status2;
+      this.Product.Status3 = this.product.Status3;
+      this.Product.Status4 = this.product.Status4;
+    } else if (blok === '2') {
+      this.Product.Status1 = this.product.Status1;
+      this.Product.Status2 = 'Beschikbaar';
+      this.Product.Status3 = this.product.Status3;
+      this.Product.Status4 = this.product.Status4;
+    } else if (blok === '3'){
+      this.Product.Status1 = this.product.Status1;
+      this.Product.Status2 = this.product.Status2;
+      this.Product.Status3 = 'Beschikbaar';
+      this.Product.Status4 = this.product.Status4;
+    } else if (blok === '4') {
+      this.Product.Status1 = this.product.Status1;
+      this.Product.Status2 = this.product.Status2;
+      this.Product.Status3 = this.product.Status3;
+      this.Product.Status4 = 'Beschikbaar';
+    }
+
+    if (this.Product.Status1 === 'Beschikbaar' &&
+              this.Product.Status2 === 'Beschikbaar' &&
+              this.Product.Status3 === 'Beschikbaar' &&
+              this.Product.Status4 === 'Beschikbaar') {
+      this.Product.Status = 'Beschikbaar';
+    } else if (this.Product.Status1 === 'Gereserveerd' &&
+              this.Product.Status2 === 'Gereserveerd' &&
+              this.Product.Status3 === 'Gereserveerd' &&
+              this.Product.Status4 === 'Gereserveerd') {
+      this.Product.Status = 'Gereserveerd';
+    } else if (this.Product.Status1 === 'Gereserveerd' ||
+              this.Product.Status2 === 'Gereserveerd' ||
+              this.Product.Status3 === 'Gereserveerd' ||
+              this.Product.Status4 === 'Gereserveerd') {
+      this.Product.Status = 'Deels Beschikbaar';
+    } else if (this.Product.Status1 === 'Uitgeleend' ||
+              this.Product.Status2 === 'Uitgeleend' ||
+              this.Product.Status3 === 'Uitgeleend' ||
+              this.Product.Status4 === 'Uitgeleend') {
+      this.Product.Status = 'Deels Beschikbaar';
+    }
+
     this.Verzoek.Blok = this.verzoek.Blok;
     this.Verzoek.Datum = this.verzoek.Datum;
     this.Verzoek.Email = this.verzoek.Email;

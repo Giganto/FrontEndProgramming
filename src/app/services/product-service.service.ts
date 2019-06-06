@@ -17,12 +17,54 @@ export class ProductServiceService {
     return this.firestore.collection('Producten').snapshotChanges();
   }
 
+  // Returns Products that are non-active, is used in the dashboard
   getNonProducts() {
     return this.firestore.collection('Producten', ref => ref.where('Status', '==', 'Non-actief')).snapshotChanges();
   }
 
+  // Returns Products that are defect, is used in the dashboard
   getDefectProducts() {
-    return this.firestore.collection('Producten', ref => ref.where('Status', '==', 'Reparatie nodig')).snapshotChanges();
+    return this.firestore.collection('Producten', ref => ref.where('Status', '==', 'Reparatie Nodig')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RESERVERD in period 1, is used in the dashboard
+  getBlok1ReserverdProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status1', '==', 'Gereserveerd')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RENTED in period 1, is used in the dashboard
+  getBlok1RentedProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status1', '==', 'Uitgeleend')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RESERVERD in period 2, is used in the dashboard
+  getBlok2ReserverdProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status2', '==', 'Gereserveerd')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RENTED in period 2, is used in the dashboard
+  getBlok2RentedProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status2', '==', 'Uitgeleend')).snapshotChanges();
+  }
+
+      // Returns the products filtered that are being RESERVERD in period 3, is used in the dashboard
+  getBlok3ReserverdProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status3', '==', 'Gereserveerd')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RENTED in period 3, is used in the dashboard
+  getBlok3RentedProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status3', '==', 'Uitgeleend')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RESERVERD in period 4, is used in the dashboard
+  getBlok4ReserverdProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status4', '==', 'Gereserveerd')).snapshotChanges();
+  }
+
+  // Returns the products filtered that are being RENTED in period 4, is used in the dashboard
+  getBlok4RentedProducts() {
+    return this.firestore.collection('Producten', ref => ref.where('Status4', '==', 'Uitgeleend')).snapshotChanges();
   }
 
   getViableProducts() {

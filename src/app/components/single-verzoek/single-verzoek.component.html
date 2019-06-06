@@ -55,7 +55,8 @@
                                           <h6>
                                               ____________________
                                           </h6>
-                                          <p class="proile-rating">Status : <span>{{this.verzoek.Status}}</span></p>
+                                          <p class="proile-rating">Verzoek status : <span>{{this.verzoek.Status}}</span></p>
+                                          <p class="proile-rating">Product status : <span>{{this.product.Status}}</span></p>
                                   <ul class="nav nav-tabs" id="myTab" role="tablist">
                                       <li class="nav-item">
                                           <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">informatie</a>
@@ -66,14 +67,14 @@
                           <div class="col-md-2">
                               <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
                               <div *ngIf='this.verzoek.Status === "In behandeling"'>
-                                  <button class="verzoek-accept" (click)="acceptVerzoek()">Verzoek Accepteren</button>
+                                  <button class="verzoek-accept" (click)="acceptVerzoek(this.verzoek.Blok)">Verzoek Accepteren</button>
                                   <button class="verzoek-cancel" (click)="cancelVerzoek()">Verzoek Afwijzen</button>
                               </div>
                               <div *ngIf='this.verzoek.Status === "Uitgeleend"'>
-                                  <button class="verzoek-uitlenen" (click)="afrondenVerzoek()">Verzoek Afronden</button>
+                                  <button class="verzoek-uitlenen" (click)="afrondenVerzoek(this.verzoek.Blok)">Verzoek Afronden</button>
                               </div>
                               <div *ngIf='this.verzoek.Status === "Goedgekeurd"'>
-                                  <button class="verzoek-uitlenen" (click)="productUitlenen()">Product Uitlenen</button>
+                                  <button class="verzoek-uitlenen" (click)="productUitlenen(this.verzoek.Blok)">Product Uitlenen</button>
                                   <button class="verzoek-annuleren" (click)="annulerenVerzoek()">Verzoek Verwijderen</button>
                               </div>
                               <div *ngIf='this.verzoek.Status === "Afgewezen"'>
@@ -87,11 +88,39 @@
                           </div>
                       </div>
                       <div class="row">
-                          <div class="col-md-2">
-                              <div class="profile-work">
+                          <div class="col-md-6">
+                              <div class="tab-content profile-tab" id="myTabContent">
+                                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                  <div>
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <label>Datum</label>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <p>{{this.verzoek.Datum}}</p>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <label>Email</label>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <p>{{this.verzoek.Email}}</p>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Lening voor blok:</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{this.verzoek.Blok}}</p>
+                                            </div>
+                                        </div>
+                              </div>
+                              </div>
                               </div>
                           </div>
-                          <div class="col-md-8">
+                          <div class="col-md-6">
                               <div class="tab-content profile-tab" id="myTabContent">
                                   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div>
@@ -113,10 +142,34 @@
                                               </div>
                                               <div class="row">
                                                   <div class="col-md-6">
-                                                      <label>Status</label>
+                                                      <label>Blok 1</label>
                                                   </div>
                                                   <div class="col-md-6">
-                                                      <p>{{this.product.Status}}</p>
+                                                      <p>{{this.product.Status1}}</p>
+                                                  </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                      <label>Blok 2</label>
+                                                  </div>
+                                                  <div class="col-md-6">
+                                                      <p>{{this.product.Status2}}</p>
+                                                  </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                      <label>Blok 3</label>
+                                                  </div>
+                                                  <div class="col-md-6">
+                                                      <p>{{this.product.Status3}}</p>
+                                                  </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                      <label>Blok 4</label>
+                                                  </div>
+                                                  <div class="col-md-6">
+                                                      <p>{{this.product.Status4}}</p>
                                                   </div>
                                               </div>
                                               <div class="row">
@@ -127,31 +180,6 @@
                                                       <p>{{this.product.id}}</p>
                                                   </div>
                                               </div>
-                                              <p>________________________________________________________________________________________</p>
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                      <label>Datum</label>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <p>{{this.verzoek.Datum}}</p>
-                                                  </div>
-                                              </div>
-                                              <div class="row">
-                                                  <div class="col-md-6">
-                                                      <label>Email</label>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <p>{{this.verzoek.Email}}</p>
-                                                  </div>
-                                              </div>
-                                              <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Lening voor blok:</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p>{{this.verzoek.Blok}}</p>
-                                                    </div>
-                                                </div>
                                       </div>
                                   </div>
 
