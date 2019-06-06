@@ -23,6 +23,18 @@ export class VerzoekService {
     return this.firestore.collection('Verzoeken', ref => ref.where('Status', '==', 'In behandeling')).snapshotChanges();
   }
 
+  getRentedVerzoeken() {
+    return this.firestore.collection('Verzoeken', ref => ref.where('Status', '==', 'Uitgeleend')).snapshotChanges();
+  }
+
+  getCheckedVerzoeken() {
+    return this.firestore.collection('Verzoeken', ref => ref.where('Status', '==', 'Goedgekeurd')).snapshotChanges();
+  }
+
+  getReturnedVerzoeken() {
+    return this.firestore.collection('Verzoeken', ref => ref.where('Status', '==', 'Teruggebracht')).snapshotChanges();
+  }
+
   getVerzoek(id: string) {
     return this.firestore.collection('Verzoeken').doc(id).snapshotChanges();
   }

@@ -12,9 +12,9 @@ import { ProductServiceService } from 'src/app/services/product-service.service'
 import { Verzoek } from 'src/app/models/verzoek.model';
 import { Product } from 'src/app/models/product.model';
 import { RentSaveStructure } from 'src/app/models/rent-save-structure.model';
+import { VerzInfoStructure } from 'src/app/models/verz-info-structure.model';
 
 // ETC
-import { DxChartModule } from 'devextreme-angular';
 import * as $ from 'jquery';
 import { async } from '@angular/core/testing';
 
@@ -26,13 +26,19 @@ import { async } from '@angular/core/testing';
 export class DashboardComponent implements OnInit {
 
   verzoeken: Verzoek[];
+  listverzoeken: Verzoek[];
   producten: Product[];
   defproducten: Product[];
   listproducten: Product[];
   dataSource: RentSaveStructure[];
+  dataSource2: VerzInfoStructure[];
+
+  // Length checks
   verzoekLength = 0;
   productLength = 0;
   defProductLength = 0;
+
+  // Counts for products
   rentCount1 = 0;
   reserveCount1 = 0;
   rentCount2 = 0;
@@ -41,6 +47,11 @@ export class DashboardComponent implements OnInit {
   reserveCount3 = 0;
   rentCount4 = 0;
   reserveCount4 = 0;
+
+  // Counts for verzoeken
+  verzoekRentedCount = 0;
+  verzoekCheckedCount = 0;
+  verzoekReturnedCount = 0;
 
   constructor(
     private authService: AuthenticationService,
@@ -53,11 +64,12 @@ export class DashboardComponent implements OnInit {
     this.getNonProducten();
     this.getDefectProducten();
     this.getCountReservedAndRentedProducts();
+    this.getInfoVerzoeken();
     this.loadChart();
   }
 
-  getOpenVerzoeken() {
-    this.verzoekService.getOpenVerzoeken().subscribe(data => {
+  async getOpenVerzoeken() {
+    await this.verzoekService.getOpenVerzoeken().subscribe(data => {
       this.verzoeken = data.map(e => {
         if (e.payload.doc.data()['Datum'] !== null) {
           const date = e.payload.doc.data()['Datum']['seconds'];
@@ -100,8 +112,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getDefectProducten() {
-    this.productService.getDefectProducts().subscribe(data => {
+  async getDefectProducten() {
+    await this.productService.getDefectProducts().subscribe(data => {
       this.defproducten = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -204,9 +216,98 @@ export class DashboardComponent implements OnInit {
     }));
   }
 
+  async getInfoVerzoeken() {
+    await this.verzoekService.getRentedVerzoeken().subscribe(data => {
+      this.listverzoeken = data.map(e => {
+        if (e.payload.doc.data()['Datum'] !== null) {
+          const date = e.payload.doc.data()['Datum']['seconds'];
+          const newDate = this.toDateTime(date);
+          return {
+            id: e.payload.doc.id,
+            Email: e.payload.doc.data()['Email'],
+            Datum: newDate,
+            Blok: e.payload.doc.data()['Blok'],
+            Product: e.payload.doc.data()['Product'],
+            Status: e.payload.doc.data()['Status'],
+          } as Verzoek;
+        } else {
+          const newDate = null;
+          return {
+            id: e.payload.doc.id,
+            Email: e.payload.doc.data()['Email'],
+            Datum: newDate,
+            Blok: e.payload.doc.data()['Blok'],
+            Product: e.payload.doc.data()['Product'],
+            Status: e.payload.doc.data()['Status'],
+          } as Verzoek;
+        }
+      });
+      this.verzoekRentedCount = this.verzoekRentedCount + this.listverzoeken.length;
+    });
+
+    await this.verzoekService.getCheckedVerzoeken().subscribe(data => {
+      this.listverzoeken = data.map(e => {
+        if (e.payload.doc.data()['Datum'] !== null) {
+          const date = e.payload.doc.data()['Datum']['seconds'];
+          const newDate = this.toDateTime(date);
+          return {
+            id: e.payload.doc.id,
+            Email: e.payload.doc.data()['Email'],
+            Datum: newDate,
+            Blok: e.payload.doc.data()['Blok'],
+            Product: e.payload.doc.data()['Product'],
+            Status: e.payload.doc.data()['Status'],
+          } as Verzoek;
+        } else {
+          const newDate = null;
+          return {
+            id: e.payload.doc.id,
+            Email: e.payload.doc.data()['Email'],
+            Datum: newDate,
+            Blok: e.payload.doc.data()['Blok'],
+            Product: e.payload.doc.data()['Product'],
+            Status: e.payload.doc.data()['Status'],
+          } as Verzoek;
+        }
+      });
+      this.verzoekCheckedCount = this.verzoekCheckedCount + this.listverzoeken.length;
+    });
+
+    await this.verzoekService.getReturnedVerzoeken().subscribe(data => {
+      this.listverzoeken = data.map(e => {
+        if (e.payload.doc.data()['Datum'] !== null) {
+          const date = e.payload.doc.data()['Datum']['seconds'];
+          const newDate = this.toDateTime(date);
+          return {
+            id: e.payload.doc.id,
+            Email: e.payload.doc.data()['Email'],
+            Datum: newDate,
+            Blok: e.payload.doc.data()['Blok'],
+            Product: e.payload.doc.data()['Product'],
+            Status: e.payload.doc.data()['Status'],
+          } as Verzoek;
+        } else {
+          const newDate = null;
+          return {
+            id: e.payload.doc.id,
+            Email: e.payload.doc.data()['Email'],
+            Datum: newDate,
+            Blok: e.payload.doc.data()['Blok'],
+            Product: e.payload.doc.data()['Product'],
+            Status: e.payload.doc.data()['Status'],
+          } as Verzoek;
+        }
+      });
+      this.verzoekReturnedCount = this.verzoekReturnedCount + this.listverzoeken.length;
+    });
+
+  }
+
 
   async loadChart() {
     await this.delay(2000);
+
+    // Structure + Data for the products bar chart
     const structureData: RentSaveStructure[] = [{
         blok: '1',
         rented: this.rentCount1,
@@ -224,8 +325,24 @@ export class DashboardComponent implements OnInit {
         rented: this.rentCount4,
         reserved: this.reserveCount4,
     }];
+
+    // Structure + Data for the verzoeken pie chart
+    const structureData2: VerzInfoStructure[] = [{
+      status: 'In Behandeling',
+      count: this.verzoekLength,
+    }, {
+      status: 'Goedgekeurd',
+      count: this.verzoekCheckedCount,
+    }, {
+      status: 'Uitgeleend',
+      count: this.verzoekRentedCount,
+    }, {
+      status: 'Teruggebracht',
+      count: this.verzoekReturnedCount,
+    }];
+
     this.dataSource = structureData;
-    console.log(structureData);
+    this.dataSource2 = structureData2;
   }
 
   delay(milliseconds: number) {

@@ -13,6 +13,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 // External Modules
 import { DxChartModule } from 'devextreme-angular';
+import { DxPieChartModule } from 'devextreme-angular';
 
 
 // Bootstrap Modules
@@ -74,6 +75,7 @@ const config = {
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     DxChartModule,
+    DxPieChartModule
   ],
   exports: [
     FormsModule,
