@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { combineLatest } from 'rxjs'
+import { map } from 'rxjs/operators';
 
 // Firebase and model import
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
@@ -68,7 +70,14 @@ export class ProductServiceService {
   }
 
   getViableProducts() {
-    return this.firestore.collection('Producten', ref => ref.where('Status', '==', 'Beschikbaar')).snapshotChanges();
+    var beschikbareProducten = this.firestore.collection('Producten', ref => ref.where('Status', '==', 'Beschikbaar')).snapshotChanges(); 
+    var deelsBeschikbareProducten = this.firestore.collection('Producten', ref => ref.where('Status', '==', 'Deels beschikbaar')).snapshotChanges(); 
+    
+
+    const combinedList = combineLatest<any[]>(beschikbareProducten, deelsBeschikbareProducten).pipe(
+      map(arr => arr.reduce((acc, cur) => acc.concat(cur) ) ),
+    )
+    return combinedList; 
   }
 
   getProduct(id: string) {
