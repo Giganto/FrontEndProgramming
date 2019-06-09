@@ -421,3 +421,14 @@ html {
     font-weight: 600;
     color: #0062cc;
   }
+
+  .is-invalid {
+    background-color: rgba(240, 24, 24, 0.63);
+    border-color: rgba(240, 24, 24, 0.63);
+  }
+
+  .invalid-feed {
+    color: rgba(240, 24, 24, 0.63);
+    font-size: 18px;
+    font-weight: 700;
+  }

@@ -109,8 +109,9 @@ export class SingleProductComponent implements OnInit {
     this.productService.updateProduct(this.Product);
   }
 
-  cancelProduct() {
-    this.productService.deleteProduct(this.id);
+  async cancelProduct() {
+    await this.productService.deleteProduct(this.id);
+    this.router.navigate(['/producten']);
   }
 
   logout() {

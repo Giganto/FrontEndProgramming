@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Firebase and model import
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Product } from 'src/app/models/product.model';
 
 @Injectable({

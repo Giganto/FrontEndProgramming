@@ -3,7 +3,7 @@
     <div class="wrapper">
 
       <div id='formContent' class=''>
-  
+
         <div id='RegisterNote' class='note'>
           <div class='row'>
             <div class='col-md-12'>
@@ -17,256 +17,227 @@
         <button routerLink="/verzoek">Verzoeken</button>
 
         <div id="formFooter">
-            <a class="underlineHover" (click)="logout()" >Log uit</a>
-          </div>
+          <a class="underlineHover" (click)="logout()">Log uit</a>
+        </div>
       </div>
-      
+
     </div>
   </div>
   <div class='col-md-9'>
     <div class="wrapper child-wrapper fadeInDown">
 
       <div id='formContent' class=''>
-  
+
         <div id='RegisterNote' class='note fadeIn first'>
           <div class="row">
             <div class="col-md-3">
 
             </div>
-            <div class="col-md-6" >
-                <p>Dashboard</p>
+            <div class="col-md-6">
+              <p>Dashboard</p>
             </div>
             <div class="col-md-3">
-              <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
             </div>
           </div>
-          
+
         </div>
 
         <div class="row">
-            <div class="col-md-6 wrapper child-wrapper fadeInDown">
-              <div class="row">
-                <div class="col-md-12">
-                    <div id='formContent' class='doubleContentDashboard leftContent'>
-            
-                        <div id='RegisterNote' class='note fadeIn first'>
-                          <div class="row">
-                            <div class="col-md-3">
-                
-                            </div>
-                            <div class="col-md-6" >
-                                <p>Open verzoeken</p>
-                            </div>
-                            <div class="col-md-3">
-                              <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row table-result-row" *ngIf="this.verzoekLength !== 0">
-                              <table class="table table-hover table-borderless">
-                                  <thead>
-                                    <tr>
-                                      <th>Email</th>
-                                      <th>Blok</th>
-                                      <th>Status</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr *ngFor="let verzoek of verzoeken">
-      
-                                      <td class="table-result" routerLink="/verzoek/{{verzoek.id}}">{{verzoek.Email}}</td>
-                                      <td class="table-result" routerLink="/verzoek/{{verzoek.id}}">{{verzoek.Blok}}</td>
-                                      <td class="table-result" routerLink="/verzoek/{{verzoek.id}}">{{verzoek.Status}}</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                      </div>
-                      <div *ngIf="this.verzoekLength === 0">
-                          <p>Geen open verzoeken</p>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-md-12">
-                    <div id='formContent' class='doubleContentDashboard leftContent'>
-            
-                        <div id='RegisterNote' class='note fadeIn first'>
-                          <div class="row">
-                            <div class="col-md-3">
-                
-                            </div>
-                            <div class="col-md-6" >
-                                <p>Verzoeken</p>
-                            </div>
-                            <div class="col-md-3">
-                              <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row table-result-row">
-                            <dx-pie-chart
-                            id="pie"
-                            palette="bright"
-                            [dataSource]="dataSource2"
-                            (onPointClick)="pointClickHandler($event)"
-                            (onLegendClick)="legendClickHandler($event)">
-                            <dxo-legend
-                            orientation="horizontal"
-                            itemTextPosition="right"
-                            horizontalAlignment="center"
-                            verticalAlignment="bottom"></dxo-legend>
-                            <dxi-series
-                                argumentField="status"
-                                valueField="count">
-                                <dxo-label [visible]="true">
-                                    <dxo-connector
-                                        [visible]="true"
-                                        [width]="1"></dxo-connector>
-                                </dxo-label>
-                            </dxi-series>
-                            <dxo-size [width]="600"></dxo-size>
-                            <dxo-export [enabled]="true"></dxo-export>
-                        </dx-pie-chart>
-                        
-                      </div>
-                      </div>
-                </div>
-              </div>
+          <div class="col-md-6 wrapper child-wrapper fadeInDown">
+            <div class="row">
+              <div class="col-md-12">
+                <div id='formContent' class='doubleContentDashboard leftContent'>
 
+                  <div id='RegisterNote' class='note fadeIn first'>
+                    <div class="row">
+                      <div class="col-md-3">
 
-              </div>
-                <div class="col-md-6 wrapper child-wrapper fadeInDown">
-                  <div class="row">
-                    <div class="col-md-12">
-                      
-                    <div id='formContent' class='doubleContentDashboard'>
-                
-                        <div id='RegisterNote' class='note fadeIn first'>
-                          <div class="row">
-                            <div class="col-md-3">
-                
-                            </div>
-                            <div class="col-md-6" >
-                                <p>Gereserveerd & Uitgeleend</p>
-                            </div>
-                            <div class="col-md-3">
-                              <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row table-result-row">
-                                <dx-chart
-                                  id="chart"
-                                  [dataSource]="dataSource">
-                                  <dxi-series valueField="rented" name="Uitgeleend"></dxi-series>
-                                  <dxi-series valueField="reserved" name="Gereserveerd"></dxi-series>
-                                  <dxi-value-axis position="right">
-                                      <dxo-title text="Producten"></dxo-title>
-                                  </dxi-value-axis>
-                                  <dxo-common-series-settings
-                                      argumentField="blok"
-                                      type="stackedBar">
-                                  </dxo-common-series-settings>
-                                  <dxo-legend
-                                      verticalAlignment="bottom"
-                                      horizontalAlignment="center"
-                                      itemTextPosition="top">
-                                  </dxo-legend>
-                                  <dxo-export [enabled]="true"></dxo-export>
-                                  <dxo-tooltip
-                                      [enabled]="true"
-                                      location="edge"
-                                      [customizeTooltip]="customizeTooltip">
-                                  </dxo-tooltip>
-                              </dx-chart>
                       </div>
+                      <div class="col-md-6">
+                        <p>Open verzoeken</p>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div id='formContent' class='doubleContentDashboard'>
-              
-                            <div id='RegisterNote' class='note fadeIn first'>
-                              <div class="row">
-                                <div class="col-md-3">
-                    
-                                </div>
-                                <div class="col-md-6" >
-                                    <p>Producten ter reparatie</p>
-                                </div>
-                                <div class="col-md-3">
-                                  <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
-                                </div>
-                              </div>
-                              
-                            </div>
-                            <div class="row table-result-row" *ngIf="this.defProductLength !== 0">
-                                <table class="table table-hover table-borderless">
-                                    <thead>
-                                      <tr>
-                                        <th>Naam</th>
-                                        <th>Status</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="let product of defproducten">
-          
-                                        <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Naam}}</td>
-                                        <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Status}}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                        </div>
-                        <div *ngIf="this.defProductLength === 0">
-                            <p>Geen reparaties nodig</p>
-                          </div>
-                          </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div id='formContent' class='doubleContentDashboard'>
-                      
-                            <div id='RegisterNote' class='note fadeIn first'>
-                              <div class="row">
-                                <div class="col-md-3">
-                    
-                                </div>
-                                <div class="col-md-6" >
-                                    <p>Non-actief producten</p>
-                                </div>
-                                <div class="col-md-3">
-                                  <!-- <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" /> -->
-                                </div>
-                              </div>
-                              
-                            </div>
-                            <div class="row table-result-row" *ngIf="this.productLength !== 0">
-                                <table class="table table-hover table-borderless">
-                                    <thead>
-                                      <tr>
-                                        <th>Naam</th>
-                                        <th>Status</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="let product of producten">
-          
-                                        <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Naam}}</td>
-                                        <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Status}}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-          
-                        </div>
-                        <div *ngIf="this.productLength === 0">
-                            <p>Geen producten op Non-actief</p>
-                          </div>
-                          </div>
+                      <div class="col-md-3">
+                      </div>
                     </div>
                   </div>
+                  <div class="row table-result-row" *ngIf="this.verzoekLength !== 0">
+                    <table class="table table-hover table-borderless">
+                      <thead>
+                        <tr>
+                          <th>Email</th>
+                          <th>Blok</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let verzoek of verzoeken">
+
+                          <td class="table-result" routerLink="/verzoek/{{verzoek.id}}">{{verzoek.Email}}</td>
+                          <td class="table-result" routerLink="/verzoek/{{verzoek.id}}">{{verzoek.Blok}}</td>
+                          <td class="table-result" routerLink="/verzoek/{{verzoek.id}}">{{verzoek.Status}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="this.verzoekLength === 0">
+                    <p>Geen open verzoeken</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div id='formContent' class='doubleContentDashboard leftContent'>
+
+                  <div id='RegisterNote' class='note fadeIn first'>
+                    <div class="row">
+                      <div class="col-md-3">
+
+                      </div>
+                      <div class="col-md-6">
+                        <p>Verzoeken</p>
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row table-result-row">
+                    <dx-pie-chart id="pie" palette="bright" [dataSource]="dataSource2"
+                      (onPointClick)="pointClickHandler($event)" (onLegendClick)="legendClickHandler($event)">
+                      <dxo-legend orientation="horizontal" itemTextPosition="right" horizontalAlignment="center"
+                        verticalAlignment="bottom"></dxo-legend>
+                      <dxi-series argumentField="status" valueField="count">
+                        <dxo-label [visible]="true">
+                          <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+                        </dxo-label>
+                      </dxi-series>
+                      <dxo-size [width]="600"></dxo-size>
+                      <dxo-export [enabled]="true"></dxo-export>
+                    </dx-pie-chart>
 
                   </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-md-6 wrapper child-wrapper fadeInDown">
+            <div class="row">
+              <div class="col-md-12">
+
+                <div id='formContent' class='doubleContentDashboard'>
+
+                  <div id='RegisterNote' class='note fadeIn first'>
+                    <div class="row">
+                      <div class="col-md-3">
+
+                      </div>
+                      <div class="col-md-6">
+                        <p>Gereserveerd & Uitgeleend</p>
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row table-result-row">
+                    <dx-chart id="chart" [dataSource]="dataSource">
+                      <dxi-series valueField="rented" name="Uitgeleend"></dxi-series>
+                      <dxi-series valueField="reserved" name="Gereserveerd"></dxi-series>
+                      <dxi-value-axis position="right">
+                        <dxo-title text="Producten"></dxo-title>
+                      </dxi-value-axis>
+                      <dxo-common-series-settings argumentField="blok" type="stackedBar">
+                      </dxo-common-series-settings>
+                      <dxo-legend verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="top">
+                      </dxo-legend>
+                      <dxo-export [enabled]="true"></dxo-export>
+                      <dxo-tooltip [enabled]="true" location="edge" [customizeTooltip]="customizeTooltip">
+                      </dxo-tooltip>
+                    </dx-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div id='formContent' class='doubleContentDashboard'>
+
+                  <div id='RegisterNote' class='note fadeIn first'>
+                    <div class="row">
+                      <div class="col-md-3">
+
+                      </div>
+                      <div class="col-md-6">
+                        <p>Producten ter reparatie</p>
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row table-result-row" *ngIf="this.defProductLength !== 0">
+                    <table class="table table-hover table-borderless">
+                      <thead>
+                        <tr>
+                          <th>Naam</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let product of defproducten">
+
+                          <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Naam}}</td>
+                          <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Status}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="this.defProductLength === 0">
+                    <p>Geen reparaties nodig</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div id='formContent' class='doubleContentDashboard'>
+
+                  <div id='RegisterNote' class='note fadeIn first'>
+                    <div class="row">
+                      <div class="col-md-3">
+
+                      </div>
+                      <div class="col-md-6">
+                        <p>Non-actief producten</p>
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row table-result-row" *ngIf="this.productLength !== 0">
+                    <table class="table table-hover table-borderless">
+                      <thead>
+                        <tr>
+                          <th>Naam</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let product of producten">
+
+                          <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Naam}}</td>
+                          <td class="table-result" routerLink="/producten/{{product.id}}">{{product.Status}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <div *ngIf="this.productLength === 0">
+                    <p>Geen producten op Non-actief</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div> 
- 
- 
+</div>
