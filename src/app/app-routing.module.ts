@@ -12,6 +12,7 @@ import { SingleVerzoekComponent } from './components/single-verzoek/single-verzo
 import { SingleProductComponent } from './components/single-product/single-product.component';
 import { LenenComponent } from './components/lenen/lenen.component';
 import { LenenProductComponent } from './components/lenen-product/lenen-product.component';
+import { AddDocentComponent} from './components/add-beheerder/add-beheerder.component';
 
 // Guards
 import { DocentGuard } from './guards/docent.guard';
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'verzoek/:id', component: SingleVerzoekComponent, canActivate: [DocentGuard]},
   { path: 'verzoek', component: VerzoekComponent, canActivate: [DocentGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [DocentGuard]},
-  { path: 'add-product', component: AddProductComponent, canActivate: [DocentGuard]}
+  { path: 'add-product', component: AddProductComponent, canActivate: [DocentGuard]},
+  { path: 'add-beheerder', component: AddDocentComponent, canActivate: [DocentGuard]}
 ];
 
 @NgModule({

@@ -40,5 +40,13 @@ export class AuthenticationService {
     return user !== null;
   }
 
+  async createUser(email: string, password: string){
+    await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
+      console.log('Success!', value);
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+    });
+  }
 
 }
