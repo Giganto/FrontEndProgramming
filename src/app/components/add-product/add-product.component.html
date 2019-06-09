@@ -1,0 +1,67 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <div class="wrapper">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note'>
+          <div class='row'>
+            <div class='col-md-12'>
+              <i class='material-icons dashboard-icons float-left' onclick=''>reorder</i>
+            </div>
+          </div>
+        </div>
+
+        <button routerLink="/dashboard">Dashboard</button>
+        <button routerLink="/profile">Profiel</button>
+        <button routerLink="/verzoek">Verzoeken</button>
+        <button routerLink="/producten">Producten</button>
+
+        <div id="formFooter">
+            <a class="underlineHover" routerLink="/login-page">Log uit</a>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class='col-md-9'>
+    <div class="wrapper child-wrapper fadeInDown">
+
+      <div id='formContent' class=''>
+
+          <div id='RegisterNote' class='note fadeIn first'>
+              <div class='row'>
+                <div class='col-md-12'>
+                  <p>Product Toevoegen</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container emp-profile">
+                <form [formGroup]="addForm" method="post">
+                    <div class="row">
+                      <div class='col-md-12'>
+                        <input type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" name="Naam" id="productName" placeholder="Naam"/>
+                        <div class="row">
+                          <div class="col-md-12" *ngIf="submitted && f.name.errors" class="invalid-feed mx-auto">
+                            <div *ngIf="f.name.errors.required">Naam moet worden ingevuld</div>
+                          </div>
+                        </div>
+                        <input type="text" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }" name="Type" id="productType" placeholder="Type" />
+                        <div class="row">
+                            <div class="col-md-12" *ngIf="submitted && f.type.errors" class="invalid-feed mx-auto">
+                              <div *ngIf="f.type.errors.required">Type moet worden ingevuld</div>
+                            </div>
+                          </div>
+                        <p></p>
+                        <p></p>
+                        <button (click)="createProduct()">Opslaan</button>
+                      </div>
+                    </div>
+                </form>           
+            </div>
+  
+      </div>
+    </div>
+  </div>
+</div> 

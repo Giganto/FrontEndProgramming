@@ -1,0 +1,68 @@
+<div class='row'>
+  <div class='col-md-3'>
+    <div class="wrapper">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note'>
+          <div class='row'>
+            <div class='col-md-12'>
+              <i class='material-icons dashboard-icons float-left' onclick=''>reorder</i>
+            </div>
+          </div>
+        </div>
+
+        <button routerLink="/dashboard">Dashboard</button>
+        <button routerLink="/profile">Profiel</button>
+        <button routerLink="/producten">Producten</button>
+
+        <div id="formFooter">
+            <a class="underlineHover" (click)="logout()" >Log uit</a>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class='col-md-9'>
+    <div class="wrapper child-wrapper fadeInDown">
+
+      <div id='formContent' class=''>
+  
+        <div id='RegisterNote' class='note fadeIn first'>
+          <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6" >
+                <p>Verzoeken</p>
+            </div>
+            <div class="col-md-3">
+              <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Zoek op naam" value="" />
+            </div>
+          </div>
+          
+        </div>
+          <!-- Children list, it hides itself when there are no children -->
+
+            <div class='row'>
+              <div *ngFor="let verzoek of verzoeken">
+                  <div class='col-md-4 child-card-search'>
+                    <div class="card child-card" style="width: 18rem;">
+                      
+                          <img class="card-img-top" src="./assets/300x300.png" alt="Card image cap">
+                      
+                      <div class="card-body">
+                        <p class="card-title float-center">{{verzoek.Email}} </p>
+                        <h5 class="card-text">{{verzoek.Status}} </h5>
+                        <button class='child-card-button' routerLink="/verzoek/{{verzoek.id}}">Zie details</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>        
+      </div>
+    </div>
+  </div>
+</div> 
+ 
+ 
