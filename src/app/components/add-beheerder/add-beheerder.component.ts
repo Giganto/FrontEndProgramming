@@ -38,7 +38,7 @@ export class AddDocentComponent implements OnInit {
 
   async createBeheerder() {
     await this.authService.createUser(this.Docent.email, this.Docent.password);
-    //this.docentService.createDocent(this.Docent);
+    this.docentService.createDocent(this.Docent);
     this.router.navigate(['/dashboard']);
 
   }
