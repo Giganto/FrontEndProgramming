@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleProductComponent } from './components/single-product/single-product.component';
 import { LenenComponent } from './components/lenen/lenen.component';
 import { LenenProductComponent } from './components/lenen-product/lenen-product.component';
+import { AddDocentComponent} from './components/add-beheerder/add-beheerder.component';
 
 const config = {
   apiKey: 'AIzaSyBy5HECxahgfn-UtcFlWN_5JkXhdYTweYU',
@@ -54,7 +55,8 @@ const config = {
     SingleVerzoekComponent,
     SingleProductComponent,
     LenenComponent,
-    LenenProductComponent
+    LenenProductComponent,
+    AddDocentComponent
   ],
   imports: [
     BrowserModule,
