@@ -29,7 +29,7 @@ export class SingleVerzoekComponent implements OnInit {
 
   @Input() Verzoek = {id: this.id, Blok: '', Status: '', Email: '', Product: '', Datum: null};
 
-  @Input() Product = {id: '', Naam: '', Type: '', Status: ''};
+  @Input() Product = {id: '', Naam: '', Type: '', Status: '', Status1: '', Status2: '', Status3: '', Status4: ''};
 
   constructor(
     private formBuilder: FormBuilder,

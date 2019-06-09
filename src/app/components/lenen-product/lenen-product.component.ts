@@ -25,7 +25,7 @@ export class LenenProductComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   product: Product;
 
-  @Input() Product = {id: this.id, Naam: '', Type: '', Status: ''};
+  @Input() Product = {id: this.id, Naam: '', Type: '', Status: '', Status1: '', Status2: '', Status3: '', Status4: ''};
   @Input() Verzoek = {id: null, Blok: '', Status: '', Email: '', Product: '', Datum: null};
 
   constructor(
@@ -65,6 +65,18 @@ export class LenenProductComponent implements OnInit {
 
     this.Product.Naam = this.product.Naam;
     this.Product.Status = 'Deels beschikbaar';
+    if (this.Verzoek.Blok == '1') {
+      this.Product.Status1 = 'Niet beschikbaar'; 
+    }
+    if (this.Verzoek.Blok == '2') {
+      this.Product.Status2 = 'Niet beschikbaar'; 
+    }
+    if (this.Verzoek.Blok == '3') {
+      this.Product.Status3 = 'Niet beschikbaar'; 
+    }
+    if (this.Verzoek.Blok == '4') {
+      this.Product.Status4 = 'Niet beschikbaar'; 
+    }
     this.Product.Type = this.product.Type;
     this.Product.id = this.id;
 
