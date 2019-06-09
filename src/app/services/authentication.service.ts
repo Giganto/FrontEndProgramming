@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, RouterLink } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'firebase';
 
 @Injectable({
@@ -41,12 +42,18 @@ export class AuthenticationService {
   }
 
   async createUser(email: string, password: string){
-    await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
-      console.log('Success!', value);
+    // Known bug, that makes it create the user but also gives a error which results in the data being handled but freezing the website untill a reload or f5.
+    try {
+      await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
+        console.log('Success!', value);
+        this.router.navigate(['/dashboard']);
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
     });
+    } catch (e) {
+      console.log('Error!' + e.message);
+    }
   }
 
 }
