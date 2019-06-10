@@ -7,16 +7,19 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // Services
 import { VerzoekService } from 'src/app/services/verzoek.service';
 import { ProductServiceService } from 'src/app/services/product-service.service';
+import { DocentService } from 'src/app/services/docent.service';
 
 // Models
 import { Verzoek } from 'src/app/models/verzoek.model';
 import { Product } from 'src/app/models/product.model';
+import { Docent } from 'src/app/models/docent.model';
 import { RentSaveStructure } from 'src/app/models/rent-save-structure.model';
 import { VerzInfoStructure } from 'src/app/models/verz-info-structure.model';
 
 // ETC
 import * as $ from 'jquery';
 import { async } from '@angular/core/testing';
+import { locateHostElement } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,8 +33,11 @@ export class DashboardComponent implements OnInit {
   producten: Product[];
   defproducten: Product[];
   listproducten: Product[];
+  docenten: Docent[];
   dataSource: RentSaveStructure[];
   dataSource2: VerzInfoStructure[];
+
+  userName: string;
 
   // Length checks
   verzoekLength = 0;
@@ -57,6 +63,7 @@ export class DashboardComponent implements OnInit {
     private authService: AuthenticationService,
     private verzoekService: VerzoekService,
     private productService: ProductServiceService,
+    private docentService: DocentService,
   ) { }
 
   ngOnInit() {
@@ -66,6 +73,14 @@ export class DashboardComponent implements OnInit {
     this.getCountReservedAndRentedProducts();
     this.getInfoVerzoeken();
     this.loadChart();
+
+    const user = JSON.parse(localStorage.getItem('docent'));
+
+    this.loadUser(user["email"] as string);
+
+    console.log(user["email"]);
+        
+    
   }
 
   async getOpenVerzoeken() {
@@ -343,6 +358,25 @@ export class DashboardComponent implements OnInit {
 
     this.dataSource = structureData;
     this.dataSource2 = structureData2;
+  }
+
+  async loadUser(email: string) {
+    console.log('test');
+    console.log(email);
+    
+    await this.docentService.getDocent(email).subscribe(data => {
+      console.log('test2');
+      console.log(data);
+      
+      this.docenten = data.map(e => {
+        console.log(e.payload.doc.data()['Naam']);
+        return {
+          naam: e.payload.doc.data()['Naam'],
+          email: e.payload.doc.data()['Email'],
+          rol: e.payload.doc.data()['Rol'],
+        } as Docent;
+      });
+    });
   }
 
   delay(milliseconds: number) {

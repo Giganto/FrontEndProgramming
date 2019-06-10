@@ -18,7 +18,7 @@ export class DocentService {
   }
 
   getDocent(email: string) {
-    return this.firestore.collection('Docenten').doc(email).snapshotChanges();
+    return this.firestore.collection('Docenten', ref => ref.where('Email', '==', email)).snapshotChanges();
   }
 
   createDocent(Docent: Docent) {
